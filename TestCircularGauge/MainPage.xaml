@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+            xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
+             x:Class="TestCircularGauge.MainPage">
+    <Grid Padding="32" RowSpacing="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <gauge:SfCircularGauge HorizontalOptions="Fill" Grid.Column="0" Grid.Row="0">
+
+            <gauge:SfCircularGauge.Scales>
+                <gauge:Scale x:Name="Scale" StartValue="1" EndValue="5" Direction="AntiClockwise"
+                                StartAngle="270" SweepAngle="330" Interval="1" ShowTicks="False" ShowLabels="False"
+                                RimColor="Gray" RadiusFactor="1" RimThickness="20">
+
+                    <gauge:Scale.Pointers>
+                        <gauge:MarkerPointer x:Name="DialToggleButton" Value="5" Offset="1.05" EnableAnimation="False" EnableDragging="True"
+                                                MarkerShape="Circle" MarkerWidth="40" MarkerHeight="40" Color="Red"/>
+                    </gauge:Scale.Pointers>
+
+                </gauge:Scale>
+            </gauge:SfCircularGauge.Scales>
+        </gauge:SfCircularGauge>
+
+        <Label Grid.Row="1" Grid.Column="0" FontSize="20" HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Pointer value:" />
+        <Label Grid.Row="2" Grid.Column="0" FontSize="20" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+               BindingContext="{x:Reference Name=DialToggleButton}" Text="{Binding Value, StringFormat='{0:F1}'}"/>
+        <Button Grid.Row="3" Grid.Column="0" Text="Another View" Clicked="Button_Clicked" FontSize="20"/>
+    </Grid>
+</ContentPage>
